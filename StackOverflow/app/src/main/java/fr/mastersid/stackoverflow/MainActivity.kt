@@ -13,8 +13,11 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,7 +39,8 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun QuestionsScreen(modifier: Modifier) {
     // un etat pour la checkbox, defini cm state mutable grace a remember
-    val onlyNotAnsweredQuestions = remember { mutableStateOf(false) }
+    // rememberSaveable conserve les modifications de l'etat lorsqu'on change la rotation ou quitte, données doivent parcelables (cm les boolean)
+    var onlyNotAnsweredQuestions: Boolean by rememberSaveable { mutableStateOf(false) }
 
     // la liste donnee en dur
     val questionsAnswered = listOf(
@@ -56,7 +60,7 @@ fun QuestionsScreen(modifier: Modifier) {
     )
 
     // un etat pour la liste de question
-    val questionsList = if (onlyNotAnsweredQuestions.value) {
+    val questionsList = if (onlyNotAnsweredQuestions) {
         questionsAnswered.sortedBy { question -> question.answerCount == 0 }
     } else {
         questionsAnswered
@@ -67,8 +71,8 @@ fun QuestionsScreen(modifier: Modifier) {
         bottomBar = {
             Row() {
                 Switch(
-                    checked = onlyNotAnsweredQuestions.value
-                    onCheckedChange = { checked -> onlyNotAnsweredQuestions.value = checked }
+                    checked = onlyNotAnsweredQuestions
+                    onCheckedChange = { checked -> onlyNotAnsweredQuestions = checked }
                 )
                 Text(
                     stringResource(id = R.string.only_not_answered_questions)
@@ -77,6 +81,7 @@ fun QuestionsScreen(modifier: Modifier) {
         }
     ) { innerPadding ->
         LazyColumn(
+
 
         ) {
             items(questionsList) { question -> QuestionsRow(question)}
