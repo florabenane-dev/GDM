@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.safeDrawingPadding
+//import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +23,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -113,7 +112,9 @@ fun QuestionsScreen(modifier: Modifier) {
 
     // un etat pour la liste de question
     val questionsList = if (onlyNotAnsweredQuestions) {
-        questionsListAnswered.filter { question -> question.answerCount == 0 }
+        questionsListAnswered.filter { question ->
+            question.answerCount == 0
+        }
     } else {
         questionsListAnswered
     }
@@ -124,7 +125,7 @@ fun QuestionsScreen(modifier: Modifier) {
             SortByNotAnsweredSwitch(
                 modifier = Modifier
                     .padding(horizontal = 16.dp)
-                    .padding(bottom = WindowInsets.safeDrawing
+                    .padding(bottom = WindowInsets.safeDrawing //ajout de la marge
                         .asPaddingValues()
                         .calculateBottomPadding()
                     ),
@@ -152,7 +153,9 @@ fun QuestionsRow(question: Question) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp) //espace entre les elts
     ) {
-        Column(modifier = Modifier.weight(1f)) { //prend le max de place
+        Column(
+            modifier = Modifier.weight(1f) //prend le max de place
+        ) {
             //titre
             Text(
                 text = question.title,
@@ -198,23 +201,9 @@ fun SortByNotAnsweredSwitch(modifier: Modifier, onlyNotAnsweredQuestions: Boolea
 @Composable
 fun SortByNotAnsweredSwitchPreview() {
     StackOverflowTheme {
-        SortByNotAnsweredSwitch(modifier = Modifier.padding(horizontal = 16.dp), onlyNotAnsweredQuestions = true) {
-        }
+        SortByNotAnsweredSwitch(
+            modifier = Modifier.padding(horizontal = 16.dp),
+            onlyNotAnsweredQuestions = true
+        ) { }
     }
 }
-
-//@Composable
-//fun Greeting(name: String, modifier: Modifier = Modifier) {
-//    Text(
-//        text = "Hello $name!",
-//        modifier = modifier
-//    )
-//}
-//
-//@Preview(showBackground = true)
-//@Composable
-//fun GreetingPreview() {
-//    StackOverflowTheme {
-//        Greeting("Android")
-//    }
-//}
