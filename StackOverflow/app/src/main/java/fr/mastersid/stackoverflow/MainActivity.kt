@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
@@ -30,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import fr.mastersid.stackoverflow.data.Question
 import fr.mastersid.stackoverflow.ui.theme.StackOverflowTheme
 
@@ -53,19 +56,59 @@ fun QuestionsScreen(modifier: Modifier) {
 
     // la liste donnee en dur
     val questionsListAnswered = listOf(
-        Question(0, "Find node that is connected to a node", 1),
-        Question(1, "pdfjsLib not initializing and is undefined", 2),
-        Question(2, "Error while building bundle in maven", 2),
-        Question(3, "Translation of Bangladesh currency to words", 2),
-        Question(4, "How to get update history of application installed on the Android platform", 1),
-        Question(5, "Why does a floating-point multiplication compile more efficiently when I put it in an inline function?", 3),
-        Question(6, "Get a single data entry from a custom database table in WordPress?", 0),
-        Question(7, "Dynamic Array searchable Data Validation", 0),
-        Question(8, "ReferenceError: HTMLElement is not defined in TypeScript", 2),
-        Question(9, "Passing record id into a Bootstrap modal so modal file download button works", 0),
-        Question(10, "How to make a structuredClone of a Proxy object?", 4),
-        Question(11, "GCC warning: how to ignore -Wswitch-default on enum", 1),
-        Question(12, "Create structured clone of Proxy", 1),
+        Question(
+            0, "Find node that is connected to a node", 1,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            1, "pdfjsLib not initializing and is undefined", 2,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            2, "Error while building bundle in maven", 2,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            3, "Translation of Bangladesh currency to words", 2,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            4, "How to get update history of application installed on the Android platform", 1,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            5,
+            "Why does a floating-point multiplication compile more efficiently when I put it in an inline function?", 3,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            6, "Get a single data entry from a custom database table in WordPress?", 0,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            7, "Dynamic Array searchable Data Validation", 0,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            8, "ReferenceError: HTMLElement is not defined in TypeScript", 2,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            9, "Passing record id into a Bootstrap modal so modal file download button works", 0,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            10, "How to make a structuredClone of a Proxy object?", 4,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            11, "GCC warning: how to ignore -Wswitch-default on enum", 1,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
+        Question(
+            12, "Create structured clone of Proxy", 1,
+            body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non eros non eros pulvinar ornare ut varius ante. Morbi molestie, dolor ac laoreet efficitur, erat orci mollis felis, ut finibus lectus dui sit amet nisl. Maecenas tincidunt hendrerit placerat. Aliquam ornare velit id maximus sollicitudin. Proin nisl sem, scelerisque eget fermentum eu, cursus eget ligula. Integer vel velit gravida, ultrices leo ac, vehicula nisi. Ut blandit lectus pellentesque erat luctus consequat. Curabitur lorem velit, venenatis rhoncus nunc nec, commodo ultricies elit. Morbi blandit odio et tincidunt rhoncus. Nunc et metus maximus, elementum enim quis, eleifend urna. Nulla aliquam odio sit amet tellus gravida rhoncus. "
+        ),
     )
 
     // un etat pour la liste de question
@@ -97,23 +140,40 @@ fun QuestionsScreen(modifier: Modifier) {
             contentPadding = PaddingValues(16.dp), //separation autour du texte
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            items(questionsList) { question -> QuestionsRow(question)}
+            items(questionsList) { question ->
+                QuestionsRow(question)
+            }
         }
     }
 }
 
 @Composable
 fun QuestionsRow(question: Question) {
-    Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) { //espace entre les elts
-        Text(
-            text = question.title,
-            maxLines = 1, //pas de retour à la ligne
-            overflow = TextOverflow.Ellipsis, //pointillés finaux si text trop long
-            modifier = Modifier.weight(1f) //prend le max de place
-        )
+    Row(
+        horizontalArrangement = Arrangement.spacedBy(16.dp) //espace entre les elts
+    ) {
+        Column(modifier = Modifier.weight(1f)) { //prend le max de place
+            //titre
+            Text(
+                text = question.title,
+                maxLines = 1, //pas de retour à la ligne
+                overflow = TextOverflow.Ellipsis, //pointillés finaux si text trop long
+                style = MaterialTheme.typography.headlineSmall //style
+            )
 
+            //corps de la question
+            Text(
+                text = question.body,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                fontSize = 16.sp
+            )
+        }
+
+        //nombres de réponse
         Text(
-            text = stringResource(id = R.string.answer_count, question.answerCount)
+            text = stringResource(id = R.string.answer_count, question.answerCount),
+            style = MaterialTheme.typography.displaySmall
         )
     }
 }
@@ -123,7 +183,7 @@ fun SortByNotAnsweredSwitch(modifier: Modifier, onlyNotAnsweredQuestions: Boolea
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
     ) {
         Switch(
             checked =  onlyNotAnsweredQuestions,
