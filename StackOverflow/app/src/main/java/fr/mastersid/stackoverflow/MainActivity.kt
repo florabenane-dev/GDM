@@ -67,7 +67,7 @@ fun QuestionsScreen(modifier: Modifier) {
 
     // un etat pour la liste de question
     val questionsList = if (onlyNotAnsweredQuestions) {
-        questionsListAnswered.sortedBy { question -> question.answerCount == 0 }
+        questionsListAnswered.filter { question -> question.answerCount == 0 }
     } else {
         questionsListAnswered
     }
