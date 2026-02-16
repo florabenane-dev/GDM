@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,8 @@ import androidx.compose.foundation.layout.safeDrawing
 //import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Switch
@@ -32,6 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.wear.compose.material.Icon
 import fr.mastersid.stackoverflow.data.Question
 import fr.mastersid.stackoverflow.ui.theme.StackOverflowTheme
 
@@ -135,16 +139,33 @@ fun QuestionsScreen(modifier: Modifier) {
                 onlyNotAnsweredQuestions = checked
             }
         }
-    ) { innerPadding ->
-        LazyColumn(
-            modifier = Modifier.padding(innerPadding),
-            contentPadding = PaddingValues(16.dp), //separation autour du texte
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            items(questionsList) { question ->
-                QuestionsRow(question)
+        floatingActionButton = {
+            FloatingActionButton(
+//                onClick =
+            ) {
+                Icon(
+                    painterRessource(R.drawable.baseline_refresh_24),
+                    stringResource(id = R.string.refresh_button_content_description)
+                )
             }
         }
+    ) { innerPadding ->
+        Box(modifier = Modifier.padding(innerPadding).fillMaxSize()){
+            LazyColumn(
+                modifier = Modifier.padding(innerPadding),
+                contentPadding = PaddingValues(16.dp), //separation autour du texte
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                items(questionsList) { question ->
+                    QuestionsRow(question)
+                }
+            }
+
+            if (refreshing) {
+                CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+            }
+        }
+
     }
 }
 

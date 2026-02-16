@@ -2,4 +2,5 @@
     <string name="app_name">StackOverflow</string>
     <string name="only_not_answered_questions">Only not answered questions</string>
     <string name="answer_count">%d</string>
+    <string name="refresh_button_content_description">Update questions</string>
 </resources>

@@ -1,1 +1,17 @@
-/build
+# Gradle
+.gradle/
+gradle/caches/
+gradle/daemon/
+gradle/native/
+gradle/wrapper/dists/
+
+# Build
+build/
+app/build/
+
+# Local config
+local.properties
+
+# IDE
+*/.idea/
+*.iml
