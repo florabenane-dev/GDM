@@ -31,6 +31,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -38,11 +39,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.wear.compose.material.Icon
+import dagger.hilt.android.AndroidEntryPoint
 import fr.mastersid.stackoverflow.data.Question
 import fr.mastersid.stackoverflow.ui.theme.StackOverflowTheme
 import fr.mastersid.stackoverflow.viewmodel.QuestionsViewModel
 
-
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,6 +82,16 @@ fun QuestionsScreen(
 
     Scaffold(
         modifier = modifier,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = questionsViewModel::updateQuestions
+            ) {
+                Icon(
+                    painterResource(R.drawable.baseline_refresh_24),
+                    stringResource(id = R.string.refresh_button_content_description)
+                )
+            }
+        },
         bottomBar = {
             SortByNotAnsweredSwitch(
                 modifier = Modifier
@@ -94,18 +106,10 @@ fun QuestionsScreen(
                 onlyNotAnsweredQuestions = checked
             }
         }
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = questionsViewModel::updateQuestions()
-            ) {
-                Icon(
-                    painterRessource(R.drawable.baseline_refresh_24),
-                    stringResource(id = R.string.refresh_button_content_description)
-                )
-            }
-        }
     ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding).fillMaxSize()){
+        Box(
+            modifier = Modifier.padding(innerPadding).fillMaxSize()
+        ) {
             LazyColumn(
                 modifier = Modifier.padding(innerPadding),
                 contentPadding = PaddingValues(16.dp), //separation autour du texte
