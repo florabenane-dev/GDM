@@ -28,7 +28,7 @@ class QuestionsViewModel @Inject constructor(
             stackOverflowRepository.questionsResponse.collect { response ->
                 when (response) {
                     is QuestionsResponse.Pending -> _isUpdating.postValue(true)
-                    is QuestionsResponse.Succes -> {
+                    is QuestionsResponse.Success -> {
                         _questions.postValue(response.list)
                         _isUpdating.postValue(false)
                     }

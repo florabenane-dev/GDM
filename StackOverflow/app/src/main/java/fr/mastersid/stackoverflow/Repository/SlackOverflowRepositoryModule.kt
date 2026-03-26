@@ -13,6 +13,6 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class SlackOverflowRepositoryModule {
     @Binds
     abstract fun bindSlackOverflowRepository(
-        slackOverflowRepositoryImpl: SlackOverflowRepositoryDummyImpl
+        slackOverflowRepositoryImpl: SlackOverflowRepositoryImpl
     ): SlackOverflowRepository
 }

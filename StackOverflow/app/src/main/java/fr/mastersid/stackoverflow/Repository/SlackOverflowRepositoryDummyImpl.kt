@@ -14,7 +14,7 @@ class SlackOverflowRepositoryDummyImpl @Inject constructor(): SlackOverflowRepos
         questionsResponse.emit(QuestionsResponse.Pending) //emet sur le flux une reponse en cours
         delay(5000)
         questionsResponse.emit(
-            QuestionsResponse.Succes(
+            QuestionsResponse.Success(
                 listOf(
                     Question(
                         0,

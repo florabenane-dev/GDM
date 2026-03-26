@@ -15,7 +15,7 @@ android {
 
     defaultConfig {
         applicationId = "fr.mastersid.stackoverflow"
-        minSdk = 22
+        minSdk = 25
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
@@ -62,11 +62,19 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 
-//    injection
+    //    injection
     implementation(libs.dagger.hilt.android)
     ksp(libs.dagger.hilt.compiler)
 
-//    ViewModels
+    //    ViewModels
     implementation(libs.androidx.compose.runtime)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    //retrofit
+    implementation(libs.retrofit)
+
+    //moshi
+    implementation(libs.moshi.kotlin)
+    implementation(libs.retrofit.converter.moshi)
+
 }
